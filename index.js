@@ -63,7 +63,7 @@ function displayCity(event) {
   let city = document.querySelector("#city");
   city.innerHTML = inputSearch.value;
 
-  let apiKey = "0ebc654fccbc00189d5408f3d6f15b08";
+  let apiKey = "1fd8093fa5ff12d796d7de756cc9d6b9";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${inputSearch.value}&appid=${apiKey}&units=metric`;
 
   //takes weather from api call an injects into app
@@ -102,7 +102,7 @@ function getLocation() {
     }
 
     //api call for longitude and latitude
-    let apiKey = "0ebc654fccbc00189d5408f3d6f15b08";
+    let apiKey = "1fd8093fa5ff12d796d7de756cc9d6b9";
     let apiLatLonUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`;
     axios.get(apiLatLonUrl).then(changeCurrentCityDegree);
   }
