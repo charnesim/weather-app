@@ -63,7 +63,7 @@ function displayCity(event) {
   let city = document.querySelector("#city");
   city.innerHTML = inputSearch.value;
 
-  let apiKey = "1fd8093fa5ff12d796d7de756cc9d6b9";
+  let apiKey = "2b6fdad0cbd018949c50c70f72250726";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${inputSearch.value}&appid=${apiKey}&units=metric`;
 
   //takes weather from api call an injects into app
@@ -102,7 +102,7 @@ function getLocation() {
     }
 
     //api call for longitude and latitude
-    let apiKey = "1fd8093fa5ff12d796d7de756cc9d6b9";
+    let apiKey = "2b6fdad0cbd018949c50c70f72250726";
     let apiLatLonUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`;
     axios.get(apiLatLonUrl).then(changeCurrentCityDegree);
   }
@@ -111,3 +111,28 @@ function getLocation() {
 //selects current weather button
 let currentLocationButton = document.querySelector("#current-location-button");
 currentLocationButton.addEventListener("click", getLocation);
+
+//selects the fahrenheit link, and listens for click to execute function
+let changeFahrenheit = document.querySelector("#fahrenheit-link");
+changeFahrenheit.addEventListener("click", convertFahrenheit);
+
+//takes current degree in fahrenheit and injects it as the large degree
+function convertFahrenheit(event) {
+  let currentDegree = "55";
+  event.preventDefault();
+  let degrees = document.querySelector("#degrees");
+  degrees.innerHTML = currentDegree + "°";
+  return currentDegree;
+}
+
+//selects celsius link and listens for click to execute function
+let changeCelsius = document.querySelector("#celsius-link");
+changeCelsius.addEventListener("click", convertCelsius);
+
+//selects large degree and injects it with a conversion from the fahrenheit function to celsius
+function convertCelsius(event) {
+  event.preventDefault();
+  let degrees = document.querySelector("#degrees");
+  let fahrenheitDegree = convertFahrenheit(event);
+  degrees.innerHTML = Math.round(((fahrenheitDegree - 32) * 5) / 9) + "°";
+}
